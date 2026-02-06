@@ -2,10 +2,12 @@
 
 A Nix flake that packages the [GitHub Copilot CLI](https://docs.github.com/en/copilot/github-copilot-in-the-cli) for easy installation on NixOS and with Home Manager.
 
+> **Fork of [scarisey/copilot-cli-flake](https://github.com/scarisey/copilot-cli-flake)** with hourly automated updates and prerelease version support.
+
 ## Overview
 
 This repository provides a Nix flake that packages the GitHub Copilot CLI, allowing you to easily install and use GitHub Copilot in your terminal on NixOS systems or through Home Manager.
-This flake is updated weekly with the last version of Copilot.
+This flake is updated hourly via GitHub Actions, picking whichever version is newer between stable and prerelease.
 
 ## Prerequisites
 
@@ -51,7 +53,7 @@ Add this flake to your NixOS system configuration:
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    copilot-cli.url = "github:scarisey/copilot-cli-flake";
+    copilot-cli.url = "github:ADobin/copilot-cli-flake";
   };
 
   outputs = { self, nixpkgs, copilot-cli, ... }: {
@@ -85,7 +87,7 @@ If you're using Home Manager as a standalone tool:
 { config, pkgs, ... }:
 
 let
-  copilot-cli = builtins.getFlake "github:scarisey/copilot-cli-flake";
+  copilot-cli = builtins.getFlake "github:ADobin/copilot-cli-flake";
 in
 {
   home.packages = [
@@ -112,7 +114,7 @@ If you're using Home Manager as a NixOS module:
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
-    copilot-cli.url = "github:scarisey/copilot-cli-flake";
+    copilot-cli.url = "github:ADobin/copilot-cli-flake";
   };
 
   outputs = { self, nixpkgs, home-manager, copilot-cli, ... }: {
@@ -140,7 +142,7 @@ For a quick one-time installation:
 
 ```bash
 # Install directly from the flake
-nix profile install github:scarisey/copilot-cli-flake
+nix profile install github:ADobin/copilot-cli-flake
 
 # Or install from a local clone
 nix profile install .
