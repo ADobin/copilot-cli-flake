@@ -1,10 +1,19 @@
 #!/usr/bin/env bash
 
-
+# Get current version from versions.json
 CURRENT_VERSION=$(grep 'version = ' package.nix | sed 's/.*version = "\([^"]*\)".*/\1/')
-echo $CURRENT_VERSION
-LATEST_VERSION=$(npm view @github/copilot version)
-echo $LATEST_VERSION
+echo "Current version: $CURRENT_VERSION"
+
+# Get both latest stable and prerelease versions
+LATEST_STABLE=$(npm view @github/copilot dist-tags.latest)
+LATEST_PRERELEASE=$(npm view @github/copilot dist-tags.prerelease)
+echo "Latest stable: $LATEST_STABLE"
+echo "Latest prerelease: $LATEST_PRERELEASE"
+
+# Compare versions using semver logic - pick whichever is newer
+# npx semver will output the higher version when given two versions
+LATEST_VERSION=$(npx semver "$LATEST_STABLE" "$LATEST_PRERELEASE" | tail -1)
+echo "Selected version: $LATEST_VERSION"
 
 # Check if update is needed
 if [ "$CURRENT_VERSION" != "$LATEST_VERSION" ]; then
