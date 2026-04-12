@@ -1,8 +1,9 @@
 name: "Update flake inputs"
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 * * * *" # Run every hour
+  # schedule:
+  #   - cron: "0 * * * *" # Run every hour
+  # Disabled: this flake is deprecated in favor of numtide/llm-agents.nix
 jobs:
   update:
     runs-on: ubuntu-latest

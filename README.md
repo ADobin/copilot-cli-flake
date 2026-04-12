@@ -1,5 +1,20 @@
 # GitHub Copilot CLI - Nix Package
 
+> [!IMPORTANT]
+> **⚠️ Deprecated** — This flake is no longer actively maintained. Automated updates have been disabled.
+>
+> **Migration:** Use [`numtide/llm-agents.nix`](https://github.com/numtide/llm-agents.nix) instead, which provides `copilot-cli` along with other AI tools as Nix packages.
+>
+> ```nix
+> # In your flake inputs:
+> llm-agents.url = "github:numtide/llm-agents.nix";
+>
+> # Then use:
+> llm-agents.packages.${system}.copilot-cli
+> ```
+
+---
+
 A Nix flake that packages the [GitHub Copilot CLI](https://docs.github.com/en/copilot/github-copilot-in-the-cli) for easy installation on NixOS and with Home Manager.
 
 > **Fork of [scarisey/copilot-cli-flake](https://github.com/scarisey/copilot-cli-flake)** with hourly automated updates and prerelease version support.
@@ -7,7 +22,8 @@ A Nix flake that packages the [GitHub Copilot CLI](https://docs.github.com/en/co
 ## Overview
 
 This repository provides a Nix flake that packages the GitHub Copilot CLI, allowing you to easily install and use GitHub Copilot in your terminal on NixOS systems or through Home Manager.
-This flake is updated hourly via GitHub Actions, picking whichever version is newer between stable and prerelease.
+~~This flake is updated hourly via GitHub Actions, picking whichever version is newer between stable and prerelease.~~
+**Note:** Automated updates have been disabled. The flake still works but is pinned to the last published version.
 
 ## Prerequisites
 
